@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى نينو.. بنتي وحبيبتي وكل دنيتي</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@400;700&display=swap');
+        body { background-color: #fff5f7; font-family: 'Cairo', sans-serif; color: #4a4a4a; margin: 0; padding: 0; }
+        
+        /* شاشة الدخول */
+        .login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffccd5; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; transition: 0.5s; }
+        input { padding: 15px; border-radius: 25px; border: 2px solid #d63384; margin-top: 10px; text-align: center; font-size: 1.2rem; outline: none; width: 250px; }
+        button { padding: 12px 40px; border-radius: 25px; border: none; background: #d63384; color: white; margin-top: 20px; cursor: pointer; font-size: 1.1rem; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        
+        .container { display: none; padding: 20px; max-width: 650px; margin: auto; animation: fadeIn 2s; }
+        .card { background: white; border-radius: 20px; padding: 25px; margin-bottom: 35px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); text-align: center; border-left: 5px solid #ff4d6d; }
+        img, video { width: 100%; border-radius: 15px; margin-bottom: 15px; border: 1px solid #eee; }
+        .date { color: #d63384; font-weight: bold; font-size: 0.95rem; background: #ffeef2; padding: 5px 15px; border-radius: 15px; display: inline-block; margin-bottom: 15px; }
+        h2 { font-family: 'Amiri', serif; color: #b02a37; margin-top: 0; }
+        p { line-height: 1.9; font-size: 1.1rem; color: #555; }
+        .reel-btn { background: #1877F2; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; display: inline-block; margin: 10px 0; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .heart-icon { color: #d63384; font-size: 1.4rem; }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="login" class="login-screen">
+        <h2 style="color: white; text-shadow: 1px 1px 5px rgba(0,0,0,0.1);">عشانك أنتي بس..</h2>
+        <input type="text" id="passInput" placeholder="اكتبي الباسورد يا نينو..">
+        <button onclick="startExperience()">فتح الحكاية <span class="heart-icon">❤️</span></button>
+    </div>
+
+    <div id="mainContent" class="container">
+        
+        <div class="card">
+            <h2>يا عشقي الأول والأخير.. 🤍</h2>
+            <p>الموقع ده معمول عشان أقولك فيه كل اللي قلبي مش عارف يقوله في كلام عادي.. افتكري كل لحظة هنا.</p>
+        </div>
+
+        <div class="card">
+            <span class="date">١٠ سبتمبر ٢٠٢٥</span>
+            <img src="https://files.catbox.moe/l6tnq8.jpg" alt="بداية الحكاية">
+            <h2>أول يوم..</h2>
+            <p>كنتي تايهة عند الشؤون زي الطفلة، ومن يومها وأنا قررت أكون ليكي السند والبيت. حسيت بشيء ملهوش وصف، كأن قلبي لقى مكانه.</p>
+        </div>
+
+        <div class="card">
+            <span class="date">٦ ديسمبر ٢٠٢٥</span>
+            <img src="https://files.catbox.moe/z6e8nb.jpg">
+            <h2>أغلى هدية</h2>
+            <p>ميدالية "ستيتش" اللي بتفكرني بيكي كل ثانية.. قطعة منك معايا دايماً.</p>
+        </div>
+
+        <div class="card">
+            <span class="date">١٢ ديسمبر ٢٠٢٥</span>
+            <h2>فاكرة الفيديو ده؟</h2>
+            <p>يوم ما بعتيلي الفيديو ده.. كان يوم مميز جداً عندي ومازال.</p>
+            <a href="https://www.facebook.com/reel/649056301536023/" target="_blank" class="reel-btn">اضغطي هنا عشان تشوفي الفيديو 🎥</a>
+        </div>
+
+        <div class="card">
+            <span class="date">١٣ ديسمبر ٢٠٢٥</span>
+            <img src="https://files.catbox.moe/in547c.jpg">
+            <p>كلامنا اللي بيطمن قلبي دايماً.</p>
+        </div>
+
+        <div class="card">
+            <video controls> <source src="https://files.catbox.moe/8wdi4a.mp4" type="video/mp4"> </video>
+            <p>وحشتيني.. كلمة قليلة على اللي بحسه في غيابك.</p>
+        </div>
+
+        <div class="card">
+            <img src="https://files.catbox.moe/w5ovxb.jpg">
+            <h2>أنا باباكي.. وانتي بنتي</h2>
+            <p>نينو.. أنا عمري ما حبيت ولا اطمنت غير وأنا معاكي. أنا مش بس حبيبك، أنا باباكي اللي هيخاف عليكي من الهوا، وهفضل سندك قدام الدنيا كلها.</p>
+        </div>
+
+        <div class="card">
+            <video controls> <source src="https://files.catbox.moe/8c1hok.mp4" type="video/mp4"> </video>
+            <h2>غيرتي عليكي..</h2>
+            <p>غيرة حب، مش غيرة تملك.. لأني بخاف على نوري اللي بينور دنيتي.</p>
+        </div>
+
+        <div class="card" style="background: #fff0f3; border: 2px dashed #ff4d6d;">
+            <span class="date">٧ أبريل ٢٠٢٦</span>
+            <h2>حقك عليا..</h2>
+            <p>لما ندهتيلي "عبدالرحمن" امبارح حسيت بغربة.. أنا "بودة" حبيبك اللي حافظك. عاتبيني، قوليلي كل اللي مضايقك، بس بلاش البعد.. أنا بعدت قبل كدا وكان غباء مني لأني بعدت عن روحي.</p>
+        </div>
+
+        <div class="card">
+            <img src="https://files.catbox.moe/fwz6v7.jpg">
+            <video controls> <source src="https://files.catbox.moe/ag9art.mp4" type="video/mp4"> </video>
+            <h2>هحاول كتير..</h2>
+            <p>عشانك هعمل المستحيل، وهصلح كل حاجة حصلت.. نفتح صفحة جديدة وننسى أي زعل؟</p>
+        </div>
+
+        <div class="card">
+            <img src="https://files.catbox.moe/s20fel.jpg">
+            <h2>وعد للأبد</h2>
+            <p>أنا عند وعدي ليكي إني مكسركيش.. كوني مطمنة وأنتي جنبي، لأنك عشقي الأول والأخير. <br> <b>بحبك يا نينو ❤️</b></p>
+        </div>
+
+    </div>
+
+    <script>
+        function startExperience() {
+            var pass = document.getElementById("passInput").value;
+            if(pass === "NENO❤️" || pass === "NENO" || pass === "نينو") {
+                // إخفاء شاشة الدخول
+                document.getElementById("login").style.opacity = "0";
+                setTimeout(function(){ 
+                    document.getElementById("login").style.display = "none"; 
+                    document.getElementById("mainContent").style.display = "block";
+                    // تشغيل الموسيقى
+                    var audio = document.getElementById("bgMusic");
+                    audio.play().catch(function(error) {
+                        console.log("Autoplay blocked, waiting for more interaction");
+                    });
+                }, 500);
+            } else {
+                alert("الباسورد غلط يا بنتي.. ركزي ❤️");
+            }
+        }
+    </script>
+</body>
+</html>
