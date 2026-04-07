@@ -3,130 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إلى نينو.. بنتي وحبيبتي وكل دنيتي</title>
+    <title>إلى نينو.. عشقي الأول والأخير</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@400;700&display=swap');
-        body { background-color: #fff5f7; font-family: 'Cairo', sans-serif; color: #4a4a4a; margin: 0; padding: 0; }
+        @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@400;600;700&display=swap');
+
+        /* تنسيق عام */
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
         
-        /* شاشة الدخول */
-        .login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffccd5; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; transition: 0.5s; }
-        input { padding: 15px; border-radius: 25px; border: 2px solid #d63384; margin-top: 10px; text-align: center; font-size: 1.2rem; outline: none; width: 250px; }
-        button { padding: 12px 40px; border-radius: 25px; border: none; background: #d63384; color: white; margin-top: 20px; cursor: pointer; font-size: 1.1rem; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        /* الخلفية الثابتة للموقع */
+        .bg-fixed {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://files.catbox.moe/j5ihqn.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+            filter: brightness(0.7);
+        }
+
+        /* شاشة الباسورد */
+        #login {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #ffccd5; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; z-index: 2000;
+        }
+        #login h2 { color: #d63384; font-family: 'Amiri', serif; margin-bottom: 20px; }
+        #login input { padding: 15px; border-radius: 30px; border: 2px solid #d63384; text-align: center; font-size: 1.2rem; outline: none; width: 280px; }
+        #login button { padding: 12px 45px; border-radius: 30px; border: none; background: #d63384; color: white; margin-top: 20px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.3s; }
+        #login button:hover { background: #b02a37; transform: scale(1.05); }
+
+        /* حاوية المحتوى */
+        .container { display: none; padding: 20px; max-width: 700px; margin: 0 auto; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px); }
+
+        /* الكروت */
+        .card { 
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 25px; 
+            padding: 30px; 
+            margin-bottom: 40px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+            text-align: center; 
+            border-top: 6px solid #ff4d6d;
+            animation: slideUp 1s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        img, video { width: 100%; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .date-badge { background: #ff4d6d; color: white; padding: 5px 20px; border-radius: 20px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
         
-        .container { display: none; padding: 20px; max-width: 650px; margin: auto; animation: fadeIn 2s; }
-        .card { background: white; border-radius: 20px; padding: 25px; margin-bottom: 35px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); text-align: center; border-left: 5px solid #ff4d6d; }
-        img, video { width: 100%; border-radius: 15px; margin-bottom: 15px; border: 1px solid #eee; }
-        .date { color: #d63384; font-weight: bold; font-size: 0.95rem; background: #ffeef2; padding: 5px 15px; border-radius: 15px; display: inline-block; margin-bottom: 15px; }
-        h2 { font-family: 'Amiri', serif; color: #b02a37; margin-top: 0; }
-        p { line-height: 1.9; font-size: 1.1rem; color: #555; }
-        .reel-btn { background: #1877F2; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; display: inline-block; margin: 10px 0; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .heart-icon { color: #d63384; font-size: 1.4rem; }
+        h2 { font-family: 'Amiri', serif; color: #b02a37; font-size: 1.8rem; margin-bottom: 15px; }
+        p { line-height: 2; font-size: 1.15rem; color: #333; text-align: justify; }
+        
+        .fb-link { background: #1877F2; color: white; padding: 12px 25px; border-radius: 15px; text-decoration: none; display: inline-block; margin: 15px 0; font-weight: bold; }
+        
+        .final-letter { background: #fff; border-right: 8px solid #d63384; padding: 30px; text-align: right; }
+        .heart-icon { color: #d63384; font-size: 1.5rem; }
     </style>
 </head>
 <body>
 
     <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <source src="https://files.catbox.moe/sezn5k.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="login" class="login-screen">
-        <h2 style="color: white; text-shadow: 1px 1px 5px rgba(0,0,0,0.1);">عشانك أنتي بس..</h2>
-        <input type="text" id="passInput" placeholder="اكتبي الباسورد يا نينو..">
-        <button onclick="startExperience()">فتح الحكاية <span class="heart-icon">❤️</span></button>
+    <div class="bg-fixed"></div>
+
+    <div id="login">
+        <h2>عشانك أنتي بس يا نينو ❤️</h2>
+        <input type="text" id="passInput" placeholder="Password...">
+        <button onclick="startApp()">فتح الحكاية</button>
     </div>
 
     <div id="mainContent" class="container">
         
         <div class="card">
             <h2>يا عشقي الأول والأخير.. 🤍</h2>
-            <p>الموقع ده معمول عشان أقولك فيه كل اللي قلبي مش عارف يقوله في كلام عادي.. افتكري كل لحظة هنا.</p>
+            <img src="https://files.catbox.moe/l6tnq8.jpg">
+            <p>الموقع ده مش بس كود، ده قلبي مكتوب على شاشة. كل تفصيلة هنا هي ذكرى غالية عليا، وعايزك تفضلي عارفة إنك أغلى حاجة في دنيتي.</p>
         </div>
 
         <div class="card">
-            <span class="date">١٠ سبتمبر ٢٠٢٥</span>
-            <img src="https://files.catbox.moe/l6tnq8.jpg" alt="بداية الحكاية">
-            <h2>أول يوم..</h2>
-            <p>كنتي تايهة عند الشؤون زي الطفلة، ومن يومها وأنا قررت أكون ليكي السند والبيت. حسيت بشيء ملهوش وصف، كأن قلبي لقى مكانه.</p>
+            <span class="date-badge">١٠/٩/٢٠٢٥</span>
+            <h2>أول بداية لينا</h2>
+            <p>أول بداية لينا شوفنا بعض كان يوم ١٠\٩\٢٠٢٥ لما كانت عند الشؤون و تايهة و كنت مش عارفة تعمل حاجة، تايهة كدا شبة طفلة تايهة وساعدتها.. وساعتها حسيت بشيء غريب، شيء ملهوش وصف، حاجة حسيتها وفي نفس الوقت إنتي حسيتيها.. وكنتي بتقفي تستني وأنا كنت حاسس إني هشوفك تاني.</p>
+            <p>وبعدها شوفتك مرتين وكل مرة نشوف بعض صدفة وأحس إني هشوفك مرة تانية وجوايا شعور مش عارف أجهله.</p>
         </div>
 
         <div class="card">
-            <span class="date">٦ ديسمبر ٢٠٢٥</span>
+            <span class="date-badge">٣٠/١١/٢٠٢٥</span>
+            <p>وفي يوم اتقابلنا وكنتِ برضه بتخلصي ورق، وكان يوم ٣٠\١١\٢٠٢٥.. الصدف اللي كانت بتجمعنا كانت بترتب لحكاية كبيرة أوي.</p>
+        </div>
+
+        <div class="card">
+            <span class="date-badge">٦/١٢/٢٠٢٥</span>
             <img src="https://files.catbox.moe/z6e8nb.jpg">
-            <h2>أغلى هدية</h2>
-            <p>ميدالية "ستيتش" اللي بتفكرني بيكي كل ثانية.. قطعة منك معايا دايماً.</p>
+            <h2>أغلى هدية في حياتي</h2>
+            <p>يوم ٦\١٢\٢٠٢٥ إديتيني أحلى هدية في حياتي والقريبة لقلبي، اللي هي ميدالية "ستيتش".. وفضلنا كويسين وكل لحظة كانت جنة.</p>
         </div>
 
         <div class="card">
-            <span class="date">١٢ ديسمبر ٢٠٢٥</span>
+            <span class="date-badge">١٢/١٢/٢٠٢٥</span>
             <h2>فاكرة الفيديو ده؟</h2>
-            <p>يوم ما بعتيلي الفيديو ده.. كان يوم مميز جداً عندي ومازال.</p>
-            <a href="https://www.facebook.com/reel/649056301536023/" target="_blank" class="reel-btn">اضغطي هنا عشان تشوفي الفيديو 🎥</a>
+            <p>اليوم ده بعتيلي الفيديو ده ولسه محفور في بالي..</p>
+            <a href="https://www.facebook.com/reel/649056301536023/" target="_blank" class="fb-link">اضغطي هنا عشان تشوفي الفيديو 🎥</a>
         </div>
 
         <div class="card">
-            <span class="date">١٣ ديسمبر ٢٠٢٥</span>
+            <span class="date-badge">١٣/١٢/٢٠٢٥</span>
             <img src="https://files.catbox.moe/in547c.jpg">
-            <p>كلامنا اللي بيطمن قلبي دايماً.</p>
+            <p>الشات ده بيثبت إننا مهما حصل، كنا دايمًا بنطمن بعض.</p>
         </div>
 
         <div class="card">
-            <video controls> <source src="https://files.catbox.moe/8wdi4a.mp4" type="video/mp4"> </video>
-            <p>وحشتيني.. كلمة قليلة على اللي بحسه في غيابك.</p>
+            <span class="date-badge">١٨/١/٢٠٢٦</span>
+            <h2>فترة البعد الصعبة</h2>
+            <p>حصل حاجة خلتنا نبعد عن بعض يوم ١٨\١\٢٠٢٦، وكان أسباب معرفهاش.. بس خوفي عليكي مبعدتش من فراغ، بس كنت كل يوم بيبقى نفسي أتكلم معاكي.</p>
+            <video class="user-video" controls> <source src="https://files.catbox.moe/a9cdbu.mp4" type="video/mp4"> </video>
+        </div>
+
+        <div class="card">
+            <span class="date-badge">٦/٣/٢٠٢٦</span>
+            <img src="https://files.catbox.moe/fwz6v7.jpg">
+            <h2>يوم العودة</h2>
+            <p>رجعنا نتكلم ٦\٣\٢٠٢٦، بس الفترة اللي مكناش بنكلم فيها كنتي بتوحشيني أكتر من أي وقت.. مبعدتش إني عايز بُعد، أنا بعدت عشان خايف عليكي وخايف على اللي مبينا إني واثق إنو لسه موجود أياً كان اللي حصل أو سبب زعلك أو زعلي.</p>
+            <video class="user-video" controls> <source src="https://files.catbox.moe/8wdi4a.mp4" type="video/mp4"> </video>
         </div>
 
         <div class="card">
             <img src="https://files.catbox.moe/w5ovxb.jpg">
             <h2>أنا باباكي.. وانتي بنتي</h2>
-            <p>نينو.. أنا عمري ما حبيت ولا اطمنت غير وأنا معاكي. أنا مش بس حبيبك، أنا باباكي اللي هيخاف عليكي من الهوا، وهفضل سندك قدام الدنيا كلها.</p>
+            <p>أنا باباكي وإنتي هتفضلي بنتي.. أنا عمري ما حبيت أو اطمنت غير وأنا معاكي، ومهما وصلك عني ياريت تقوليلي يمكن وصلك حاجة غلط.</p>
         </div>
 
         <div class="card">
-            <video controls> <source src="https://files.catbox.moe/8c1hok.mp4" type="video/mp4"> </video>
-            <h2>غيرتي عليكي..</h2>
-            <p>غيرة حب، مش غيرة تملك.. لأني بخاف على نوري اللي بينور دنيتي.</p>
+            <span class="date-badge">٧/٤/٢٠٢٦</span>
+            <h2>وجع امبارح..</h2>
+            <img src="https://files.catbox.moe/21wo0e.jpg">
+            <p>امبارح بتاريخ ٧\٤\٢٠٢٦ لما رديتي عليا رديت بـ "عبدالرحمن" مش بـ "أي يابا" أو "بودة".. رديت باسمي عشان كدا كنت بكلمك عشان عايز أعرف مالك أو فيكي إيه، لأن إنتي عارفة إني بفهمك وعارفك وحافظك.</p>
+            <p>ومع ذلك اتكلمي معايا عاتبيني، هاتي همك وشيلي عليا أنا مش هعترض، وأنا هقف قدام الدنيا كلها عشان تبقي مرتاحة.</p>
         </div>
 
-        <div class="card" style="background: #fff0f3; border: 2px dashed #ff4d6d;">
-            <span class="date">٧ أبريل ٢٠٢٦</span>
-            <h2>حقك عليا..</h2>
-            <p>لما ندهتيلي "عبدالرحمن" امبارح حسيت بغربة.. أنا "بودة" حبيبك اللي حافظك. عاتبيني، قوليلي كل اللي مضايقك، بس بلاش البعد.. أنا بعدت قبل كدا وكان غباء مني لأني بعدت عن روحي.</p>
-        </div>
-
-        <div class="card">
-            <img src="https://files.catbox.moe/fwz6v7.jpg">
-            <video controls> <source src="https://files.catbox.moe/ag9art.mp4" type="video/mp4"> </video>
-            <h2>هحاول كتير..</h2>
-            <p>عشانك هعمل المستحيل، وهصلح كل حاجة حصلت.. نفتح صفحة جديدة وننسى أي زعل؟</p>
-        </div>
-
-        <div class="card">
+        <div class="card final-letter">
+            <h2>رسالتي الأخيرة ليكي..</h2>
+            <p>مهما حصل وعندك إيه أنا هفضل جنبك ومش هسيبك ولا هبعد عنك تاني.. كان غباء مني لما بعدت لأني لما بعدت بعدت عن روحي ونفسي.</p>
+            <p>أنا مش عامل كل ده عشان بس أوصلك إني بحبك، بس عشان عايزك تطمني إن والله والله عمري ما هلاقي حد أحبه كدا يا عشقي الأول والأخير. أنا عرفت حياتي لما إنتي دخلتي فيها ونورتيها.</p>
+            <p>حتى عدم ردك عليا أنا عارف إنك زعلانة مني وحقك عليا يا ست البنات.. تعالي نفتح صفحة جديدة وننسى أي زعل حصل قبل كدا.</p>
+            <video class="user-video" controls> <source src="https://files.catbox.moe/ag9art.mp4" type="video/mp4"> </video>
             <img src="https://files.catbox.moe/s20fel.jpg">
-            <h2>وعد للأبد</h2>
-            <p>أنا عند وعدي ليكي إني مكسركيش.. كوني مطمنة وأنتي جنبي، لأنك عشقي الأول والأخير. <br> <b>بحبك يا نينو ❤️</b></p>
+            <h2 style="text-align:center;">أنا لسه بحبك.. ووعد مني مش هسيبك <span class="heart-icon">❤️</span></h2>
         </div>
 
     </div>
 
     <script>
-        function startExperience() {
+        const bgMusic = document.getElementById('bgMusic');
+        const videos = document.querySelectorAll('.user-video');
+
+        function startApp() {
             var pass = document.getElementById("passInput").value;
-            if(pass === "NENO❤️" || pass === "NENO" || pass === "نينو") {
-                // إخفاء شاشة الدخول
-                document.getElementById("login").style.opacity = "0";
-                setTimeout(function(){ 
-                    document.getElementById("login").style.display = "none"; 
-                    document.getElementById("mainContent").style.display = "block";
-                    // تشغيل الموسيقى
-                    var audio = document.getElementById("bgMusic");
-                    audio.play().catch(function(error) {
-                        console.log("Autoplay blocked, waiting for more interaction");
-                    });
-                }, 500);
+            if(pass === "NENO❤️" || pass === "NENO") {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
+                bgMusic.play();
+                bgMusic.volume = 1.0;
             } else {
-                alert("الباسورد غلط يا بنتي.. ركزي ❤️");
+                alert("الباسورد غلط يا بنتي ❤️");
             }
         }
+
+        // تحكم ذكي في الصوت: توطية الموسيقى عند تشغيل الفيديوهات
+        videos.forEach(video => {
+            video.onplay = function() {
+                bgMusic.volume = 0.1; // توطية الصوت لـ 10%
+            };
+            video.onpause = function() {
+                bgMusic.volume = 1.0; // رجوع الصوت لـ 100%
+            };
+            video.onended = function() {
+                bgMusic.volume = 1.0;
+            };
+        });
     </script>
 </body>
 </html>
